@@ -1,17 +1,20 @@
+DARK_THEME=$(gum choose "Tokyo Night" "Catppuccin" "Nord" "Everforest" "Gruvbox" "Kanagawa" --selected "Tokyo Night" --header "Choose your dark theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+LIGHT_THEME=$(gum choose "Rose Pine" --selected "Rose Pine" --header "Choose your light theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+
 cat > $OMAKUB_PATH/bin/dark-mode-switch.sh <<EOT
 #!/bin/bash
 
 # Function to execute when dark mode is enabled
 dark_mode_on() {
 	echo "Dark mode enabled, setting \"Tokyo Night\" theme"
-	export DESIRED_THEME="tokyo-night"
+	export DESIRED_THEME="$DARK_THEME"
 	set_theme
 }
 
 # Function to execute when light mode is enabled
 light_mode_on() {
 	echo "Light mode enabled, setting \"Red Pine\" theme"
-	export DESIRED_THEME="rose-pine"
+	export DESIRED_THEME="$LIGHT_THEME"
 	set_theme
 }
 
@@ -72,4 +75,6 @@ sudo mv /tmp/darkmode-monitor.service /etc/systemd/system/darkmode-monitor.servi
 
 sudo systemctl daemon-reload
 sudo systemctl enable darkmode-monitor.service
-sudo systemctl start darkmode-monitor.service
+sudo systemctl restart darkmode-monitor.service
+
+echo "All done ! Try switching light/dark mode to check it out 😉"
