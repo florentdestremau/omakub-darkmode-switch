@@ -2,6 +2,8 @@
 
 A simple [Omakub](https://omakub.org/) extension to add a listener on light and dark mode so that it can switch from a light theme to a dark theme.
 
+![](omakub-theme-switch-demo.gif)
+
 # Install
 
 ```
