@@ -4,32 +4,25 @@ LIGHT_THEME=$(gum choose "Rose Pine" --selected "Rose Pine" --header "Choose you
 cat > $OMAKUB_PATH/bin/dark-mode-switch.sh <<EOT
 #!/bin/bash
 
-# Function to execute when dark mode is enabled
 dark_mode_on() {
-	echo "Dark mode enabled, setting \"Tokyo Night\" theme"
-	export DESIRED_THEME="$DARK_THEME"
+	export THEME="$DARK_THEME"
+	echo "Dark mode enabled, setting $DARK_THEME theme"
 	set_theme
 }
 
-# Function to execute when light mode is enabled
 light_mode_on() {
-	echo "Light mode enabled, setting \"Red Pine\" theme"
-	export DESIRED_THEME="$LIGHT_THEME"
+	export THEME="$LIGHT_THEME"
+	echo "Light mode enabled, setting $LIGHT_THEME theme"
 	set_theme
 }
 
 set_theme() {
-	# Create a temporary gum function that returns the desired theme
-	function gum() {
-		if [[ \$1 == "choose" ]]; then
-			echo "\$DESIRED_THEME"
-		else
-			command gum "\$@"
-		fi
-	}
-
-	# Run the script with the overridden gum function
-	( gum() { if [[ \$1 == "choose" ]]; then echo "\$DESIRED_THEME"; else command gum "\$@"; fi; }; source \$OMAKUB_PATH/bin/omakub-sub/theme.sh )
+	cp $OMAKUB_PATH/themes/\$THEME/alacritty.toml ~/.config/alacritty/theme.toml
+	cp $OMAKUB_PATH/themes/\$THEME/zellij.kdl ~/.config/zellij/themes/\$THEME.kdl
+	sed -i "s/theme \".*\"/theme \"\$THEME\"/g" ~/.config/zellij/config.kdl
+	cp $OMAKUB_PATH/themes/\$THEME/neovim.lua ~/.config/nvim/lua/plugins/theme.lua
+	source $OMAKUB_PATH/themes/\$THEME/gnome.sh
+	source $OMAKUB_PATH/themes/\$THEME/vscode.sh
 }
 
 
