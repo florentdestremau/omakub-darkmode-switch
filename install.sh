@@ -53,6 +53,8 @@ while true; do
 done
 EOT
 
+sudo chmod +x $OMAKUB_PATH/bin/dark-mode-switch.sh
+
 cat > /tmp/darkmode-monitor.service <<EOT
 [Unit]
 Description=Dark Mode Monitor
