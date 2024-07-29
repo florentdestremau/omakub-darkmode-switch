@@ -11,14 +11,14 @@ source install.sh
 ```
 
 # Uninstall
-
+If you don't want this extension anymore, you can uninstall it very simply this way. 
 ```
 source uninstall.sh
 ```
 
 # How it works
 
-Following a pull request I made on the main omakub repo, I created a script that watches the `gsettings` and detects the ligth/dark mode switch.
+Following a [pull request](https://github.com/basecamp/omakub/pull/206) I made on the main omakub repo, I created a script that watches the `gsettings` and detects the ligth/dark mode switch.
 
 # Why only "Rose Pine" as a light theme ?
 
