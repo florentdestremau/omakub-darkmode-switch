@@ -8,7 +8,7 @@ A simple [Omakub](https://omakub.org/) extension to add a listener on light and 
 git clone git@github.com:florentdestremau/omakub-darkmode-switch.git
 cd omakub-darkmode-switch
 source install.sh
-``
+```
 
 # Uninstall
 
