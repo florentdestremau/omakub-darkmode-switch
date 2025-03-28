@@ -1,7 +1,7 @@
 DARK_THEME=$(gum choose "Tokyo Night" "Catppuccin" "Nord" "Everforest" "Gruvbox" "Kanagawa" --selected "Tokyo Night" --header "Choose your dark theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 LIGHT_THEME=$(gum choose "Rose Pine" --selected "Rose Pine" --header "Choose your light theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 
-cat > $OMAKUB_PATH/bin/dark-mode-switch.sh <<EOT
+\cat > $OMAKUB_PATH/bin/dark-mode-switch.sh <<EOT
 #!/bin/bash
 
 dark_mode_on() {
@@ -48,7 +48,7 @@ EOT
 
 sudo chmod +x $OMAKUB_PATH/bin/dark-mode-switch.sh
 
-cat > /tmp/darkmode-monitor.service <<EOT
+\cat > /tmp/darkmode-monitor.service <<EOT
 [Unit]
 Description=Dark Mode Monitor
 After=graphical-session.target
